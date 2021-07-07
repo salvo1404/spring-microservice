@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,12 +17,12 @@ public class Player {
     private Long id;
 
     @NotNull(message = "Name is required")
-    @Size(min = 3, max = 50)
+    @NotBlank(message = "Name cannot be blank")
+    @Size(min = 3, max = 50, message = "Name size must be between 3 and 50")
     private String name;
 
     @NotNull(message = "Email is required")
     @Email(message = "Email address not valid")
-    @Size(min = 3, max = 100)
     private String email;
 
     public Player() {

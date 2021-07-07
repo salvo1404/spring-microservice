@@ -4,8 +4,11 @@ import au.salvatorebalzano.microservice.models.Player;
 import au.salvatorebalzano.microservice.repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
@@ -22,7 +25,7 @@ public class PlayerController {
     }
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Player store(Player player) {
+    public Player store(@Valid Player player) throws ConstraintViolationException {
 
         return playerRepository.save(player);
     }
@@ -30,5 +33,10 @@ public class PlayerController {
     @GetMapping(value="/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Optional<Player> show(@PathVariable Long id) {
         return playerRepository.findById(id);
+    }
+
+    @PutMapping(value = "/{id}")
+    public String update(@RequestParam String param) {
+        return "ciao";
     }
 }
