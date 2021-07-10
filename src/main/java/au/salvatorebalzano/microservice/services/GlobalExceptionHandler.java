@@ -1,10 +1,10 @@
 package au.salvatorebalzano.microservice.services;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.net.HttpURLConnection;
+import java.util.*;
 
+import au.salvatorebalzano.microservice.exceptions.PlayerNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
@@ -28,5 +28,14 @@ public class GlobalExceptionHandler
         }
 
         return ResponseEntity.badRequest().body(map);
+    }
+
+    @ExceptionHandler(PlayerNotFoundException.class)
+    public ResponseEntity<Object> handlePlayerNotFound(PlayerNotFoundException ex) {
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("status", HttpURLConnection.HTTP_NOT_FOUND);
+        map.put("message", ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(map);
     }
 }
