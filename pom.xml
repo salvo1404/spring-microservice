@@ -14,7 +14,7 @@
 	<name>microservice</name>
 	<description>Simple microservice in Spring Boot</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<!--Health endpoints-->

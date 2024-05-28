@@ -21,11 +21,11 @@ public class MicroserviceApplication {
 	@GetMapping("/")
 	public ResponseEntity<String> home(@RequestHeader Map<String, String> headers) {
 		String userAgent = headers.getOrDefault("user-agent", "MacBook");
-//		headers.forEach((key, value) -> {
-//			System.out.printf("Header '%s' = %s%n", key, value);
-//		});
+		headers.forEach((key, value) -> {
+			System.out.printf("Header '%s' = %s%n", key, value);
+		});
 
 		return new ResponseEntity<String>(
-				String.format("Hello %s!", userAgent), HttpStatus.OK);
+			String.format("Hello %s!", userAgent), HttpStatus.OK);
 	}
 }

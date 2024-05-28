@@ -8,6 +8,12 @@ class MicroserviceApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.print("Test context loads");
+	}
+
+	@Test
+	void testPlayer() {
+		System.out.print("Test Player Model");
 	}
 
 }
